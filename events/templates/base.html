@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+		
+        <title>Sentimental1 Blog</title>
+		{% load static %}
+        <link rel="icon" type="image/x-icon" href="{}" />
+		
+		<!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+	<!-- 
+
+                            _ooOoo_  
+                           o8888888o  
+                           88" . "88  
+                           (| -_- |)  
+                            O\ = /O  
+                        ____/`---'\____  
+                      .   ' \\| |// `.  
+                       / \\||| : |||// \  
+                     / _||||| -:- |||||- \  
+                       | | \\\ - /// | |  
+                     | \_| ''\---/'' | |  
+                      \ .-\__ `-` ___/-. /  
+                   ___`. .' /--.--\ `. . __  
+                ."" '< `.___\_<|>_/___.' >'"".  
+               | | : `- \`.;`\ _ /`;.`/ - ` : | |  
+                 \ \ `-. \_ __\ /__ _/ .-` / /  
+         ======`-.____`-.___\_____/___.-`____.-'======  
+                            `=---='  
+  
+         .............................................  
+                  佛祖保佑            永無 BUG 
+                  如有 BUG            佛系處理                       
+-->
+	<style>
+		hr.Divider{ border:solid #272727;border-width: 1px 0 0; clear: both; margin: 22px 0 21px; height: 0; }
+	</style>
+	
+	<body style='background-color:#E0E0E0'></body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+				
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+				
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+				
+                        <li class="nav-item dropdown">
+							<a href="#" class="nav-link px-lg-3 py-3 py-lg-4"
+							data-toggle="dropdown">Information</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href={% url 'all_infos' %}><span style="font-family:monospace; color:#ADADAD;">Info</span></a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href={% url 'add-information' %}><span style="font-family:monospace; color:#ADADAD;">Add-info</span></a>
+								<a class="dropdown-item" href={% url 'infoname-list' %}><span style="font-family:monospace; color:#ADADAD;">List-info</span></a>
+							</div> 
+						</li>
+						
+						
+						
+                        <li class="nav-item dropdown">
+							<a href="#" class="nav-link px-lg-3 py-3 py-lg-4"
+							data-toggle="dropdown">Papers</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href={% url 'all_papers' %}><span style="font-family:monospace; color:#ADADAD;">Paper</span></a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href={% url 'add-paper' %}><span style="font-family:monospace; color:#ADADAD;">New a Paper</span></a>
+								<a class="dropdown-item" href={% url 'all_papers' %}><span style="font-family:monospace; color:#ADADAD;">Manage Paper</span></a>
+							</div> 
+						</li>
+		
+						<li class="nav-item">
+							<a class="nav-link px-lg-3 py-3 py-lg-4" href={% url 'My-Portfolio' %}>My portfolio</a>
+						</li>
+						
+
+		                          
+                    </ul>
+					
+					<ul class="navbar-nav mr-2">
+		
+							<li class="nav-item dropdown">
+								<a href="#" class="nav-link px-lg-3 py-3 py-lg-4"
+								data-toggle="dropdown">Account</a>
+								<div class="dropdown-menu">
+									{% if user.is_authenticated %}
+									<a class="dropdown-item" href={% url 'logout' %}><span style="font-family:monospace; color:#ADADAD;">Logout</span></a>
+									{% else %}
+									<a class="dropdown-item" href={% url 'login' %}><span style="font-family:monospace; color:#ADADAD;">Login</span></a>
+									<a class="dropdown-item" href={% url 'register-user' %}><span style="font-family:monospace; color:#ADADAD;">Register</span></a>
+									{% endif %}
+								</div> 
+							</li>
+				
+							<li class="nav-item">
+							  <a class="nav-link px-lg-3 py-3 py-lg-4" href={% url 'about-us' %}>About me</a>
+							</li>
+		
+					</ul>						
+					
+					<form class="form-inline" method=POST action="{% url 'search-inofrmation' %}">
+					  {% csrf_token %}				  
+					  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searched">						  
+					</form>
+					
+                </div>
+				
+            </div>
+        </nav>
+		
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{% static 'assets/img/ting.png' %}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Sentimental1's Blog</h1>
+                            <span class="subheading">A Blog Theme by Sentimental1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+		
+        <!-- Main Content-->	
+		<div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <div class="container">
+						{% if messages %}
+							{% for message in messages %}
+							
+								<div class="alert alert-warning alert-dismissible fade show" role="alert">
+								{{ message }}
+								</div>
+								
+							{% endfor %}
+						{% endif %}
+						</div>
+					
+						{% block content %}
+						{% endblock %}
+                </div>
+            </div>
+        </div>
+		
+		
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+			
+			<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop
+			  <div class="row">
+				<div class="col-6 col-md-4">.col-6 .col-md-4</div>
+				<div class="col-6 col-md-4">.col-6 .col-md-4</div>
+				<div class="col-6 col-md-4">.col-6 .col-md-4</div>
+			  </div>
+			-->
+						
+                <div class="row">
+					<div class="col-6 col-md-3">
+								
+					</div>
+					<div class="col-6 col-md-6">
+																
+					</div>		
+				</div>
+		
+            </div>
+		</div>	
+        <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="https://twitter.com/EDG_Edward">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=100004616493652">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/Andy61490963/Django-server-cloud.git">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Sentimental1 Website 2022</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+		
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		
+    </body>
+</html>

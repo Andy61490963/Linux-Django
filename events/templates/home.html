@@ -1,0 +1,42 @@
+{% extends 'base.html' %} <!-- 根據base.html延伸出來的網頁 -->
+
+{% block content %}
+	<center>
+	<!--<h1>Hello {{ name }}! Now is {{ month }} -->
+	<!--{{ year }}</h1>-->
+	<blockquote>
+			<h1><font face="monospace">Now is {{ time }}</h1>
+			<h2><font face="monospace">enjoy your day</h2>
+		<footer>
+			Welcome to Sentimental1's web :)
+		</footer>
+	</blockquote>
+	</center>
+
+<span style="font-family:monospace; font-size:30px;">
+	Here is some learning resource..
+</span>
+
+{% for post in post %}
+<hr class="Divider">
+
+<div class="post-preview">
+	<a href="{{ post.website }}">
+		<h2 class="post-title">{{ post.postname }}</h2>
+	</a>
+	<a>
+		<h3 class="post-subtitle">{{ post.introduction }}</h3>
+	</a>
+	<br/>
+	<p class="post-meta">
+		Posted by
+		<a href="{% url 'all_infos' %}">{{ post.writer }}</a>
+		on {{ post.post_date }}
+	</p>
+</div>
+
+
+{% endfor %}	
+<hr class="Divider">
+<div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">我要發文 →</a></div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %} <!-- 根據base.html延伸出來的網頁 -->
+
+{% block content %}
+	<center>
+	{% if searched %}
+		<h1>You Search For {{ searched }}</h1>
+		<br/>
+		{% for information in informations %}
+			{{ information }}
+			<br/>
+		{% endfor %}
+		
+	{% else %}
+		<h1>Blank search is not available...</h1>
+	{% endif %}
+	
+	</center>
+{% endblock %}

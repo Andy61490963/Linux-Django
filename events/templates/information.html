@@ -1,0 +1,43 @@
+{% extends 'base.html' %} <!-- 根據base.html延伸出來的網頁 -->
+
+{% block content %}
+
+{% if user.is_authenticated %}
+	<span style="font-family:monospace; font-size:30px;">Informations filter by name</span>
+	
+<br/><br/>
+<table class="table table-striped table-hover table-bordered">
+	{% for infoname in infoname_list %}
+		<tr>
+			<td>
+				<a href="{% url 'show-information' infoname.id %}"> 
+				<!-- 幹你娘 infoname.id要注意 -->
+				{{ infoname }}
+				</a> 
+			</td>
+			<td align="right">
+				<a href="{% url 'update-information' infoname.id %}"
+				class="btn btn-outline-secondary btn-sm">Update
+				</a>
+				
+				{% if user.get_username == infoname.name %}		
+				<a href="{% url 'delete-information' infoname.id %}"
+				class="btn btn-outline-secondary btn-sm">Delete
+				</a> 
+				{% endif %}
+				
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+<br/>
+
+{% else %}	
+<h3><font face="monospace">Sorry! You must be logged in to view this page <h3>
+
+<br/>
+<a href={% url 'login' %}>Login here</a>
+	
+{% endif %}
+
+{% endblock %} 

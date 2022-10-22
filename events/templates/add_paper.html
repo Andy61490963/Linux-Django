@@ -1,0 +1,35 @@
+{% extends 'base.html' %} <!-- 根據base.html延伸出來的網頁 -->
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<span style="font-family:monospace; font-size:30px;">Create Paper</span>
+<br/>
+<span style="font-family:Microsoft JhengHei;"><span style="color:red;"><h7>
+Academic integrity should be complied in your post
+</h7></span></span>
+
+	{% if submitted %}		
+			
+		<h1>Your paper was submitted 
+		succefully!!</h1>
+		
+	{% else %}
+	
+	<form action="" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Update" 
+		class="btn btn-secondary">
+		
+	{% endif %}
+<br/><br/>
+{% else %}	
+<h3><font face="monospace">Sorry! You must be logged in to view this page <h3>
+
+<br/>
+<a href={% url 'login' %}>Login here</a>
+	
+{% endif %}
+{% endblock %}

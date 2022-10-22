@@ -1,0 +1,38 @@
+{% extends 'base.html' %} <!-- 根據base.html延伸出來的網頁 -->
+
+{% block content %} <!-- 用以區分界線的模塊，content是這個模塊的命名，跟base的 block content 有對應關係 -->
+	<span style="font-family:monospace; font-size:30px;">Paper</span>
+<br/>
+<!-- Paper -->
+{% for paper in papers %}
+<div class="card">
+  <div class="card-header">
+    {{ paper }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><li><span style="font-family:monospace; font-size:10px; font-weight:30;">{{ paper.papercontent }}</span></li></h5>
+	<br/>
+	{% if paper.image %}
+        <img src="{{ paper.image.url }}" style=" height: auto; max-width: 100%;" />
+	<br/><br/>
+	{% endif %}
+	<!--<a href="https://paperswithcode.com/paper/robust-speech-recognition-via-large-scale" class="btn btn-primary" style="background-color:#9D9D9D"><font face="微軟正黑體">Relevant data</font></a>-->
+  </div>
+</div>
+<br/>
+
+<!--
+<div class="card" style="width: 18rem;">
+	{% if paper.image %}
+  <img src="{{ paper.image.url }}" width=500 class="card-img-top" alt="...">
+	{% endif %}	
+  <div class="card-body">
+    <h5 class="card-title">{{ paper }}</h5>
+    <p class="card-text">{{ paper.papercontent }}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+-->
+
+{% endfor %}
+{% endblock %}

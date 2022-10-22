@@ -1,0 +1,30 @@
+{% extends 'base.html' %} <!-- 根據base.html延伸出來的網頁 -->
+
+{% block content %}
+
+{% if user.is_authenticated %}
+	{% if user.get_username == update_information.name %}
+	
+	<h1>Update information</h1>
+	<br/>
+	<form action="" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<br/>
+		<input type="submit" value="Update" 
+		class="btn btn-secondary">
+			
+	{% else %}
+		<h2>Access Denied</h2>
+		<p>Only the information's manager can update information</p>
+		
+		Logged In User: {{ user.get_username }}
+		<br/>
+		Information Manager: {{ update_information.name }}
+		<br/>
+	{% endif %}
+	
+{% else %}
+	<h1><font face="monospace">Sorry! You must be logged in to view this page <h1>
+{% endif %}
+{% endblock %}

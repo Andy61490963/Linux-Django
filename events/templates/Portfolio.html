@@ -1,0 +1,48 @@
+{% extends 'base.html' %} <!-- 根據base.html延伸出來的網頁 -->
+
+{% block content %} <!-- 用以區分界線的模塊，content是這個模塊的命名，跟base的 block content 有對應關係 -->
+	<span style="font-family:monospace; font-size:30px;">Portfolio</span>
+	<br/>
+	<span class="subheading">click image to see detail</span>
+<!-- Portfolio -->	
+
+<div class="row">
+  {% for Portfolio in Portfolios %}
+	<div class="col-lg-4">
+	  <div class="col">
+		<div class="card mt-4" style="width: 11.5rem;">
+		{% if Portfolio.image %}
+		  <img src="{{ Portfolio.image.url }}" class="card-img-top" style=" height: auto; max-width: 100%;" alt="" >
+		{% endif %}
+		  <div class="card-body">
+		  
+			<h5 class="card-title">
+			{{ Portfolio }}
+			</h5>
+			<p class="card-text">
+			<span style="font-family:monospace; font-size:15px;">
+			{{ Portfolio.content }}</p>
+			</span>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  {% endfor %}
+</div>
+
+<br/>
+
+<!--
+<div class="card" style="width: 18rem;">
+	{% if aboutus.image %}
+  <img src="{{ aboutus.image.url }}" width=500 class="card-img-top" alt="...">
+	{% endif %}	
+  <div class="card-body">
+    <h5 class="card-title">{{ aboutus }}</h5>
+    <p class="card-text">{{ aboutus.content }}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+-->
+
+{% endblock %}
