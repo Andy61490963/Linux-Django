@@ -5,6 +5,7 @@ from .models import paper
 from .models import all_aboutus
 from .models import Portfolio
 from .models import homepost
+from .models import article
 
 #admin.site.register(information)
 admin.site.register(Interest)
@@ -32,4 +33,8 @@ class all_aboutus(admin.ModelAdmin):
     
 @admin.register(Portfolio)
 class Portfolio(admin.ModelAdmin):
+    list_display = ('title','content','image')
+    
+@admin.register(article)
+class article(admin.ModelAdmin):
     list_display = ('title','content','image')

@@ -1,15 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% load socialaccount %}
 	
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button1 {background-color: #ADADAD; color: black;} /* Gray */ 
+</style>		
+
 	<span style="font-family:monospace; font-size:30px;">Login</span>
 	<br/>
+
+	<span class="subheading" style="font-family:monospace; font-size:15px;">Login with</span>
+	&emsp;
+	<button class="button button1"><a href="{% provider_login_url 'github' %}">Github</a></button>
+	<br/>
+	
 	<span class="subheading" style="font-family:monospace; font-size:15px;">No account? Register</span>
 	<a href={% url 'register-user' %} style="font-family:monospace; font-size:15px; color:red; text-decoration:underline;">here<a>
 	<br/><br/>
 	
 		<form action="" method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
+			{% csrf_token %} 	
 			
 			<form>
 			  <div class="mb-3">
@@ -26,7 +50,20 @@
 			{% csrf_token %} 
 			<input type="submit" value="submit" 
 			class="btn btn-secondary">
-                </form>
+			
+		</form>
 	
-	
+		<!--
+		<button type="button" class="btn btn-outline-light">
+			<a href="{% provider_login_url 'google' %}">Google</a>
+		</button>
+			&emsp;/&emsp;
+		<button type="button" class="btn btn-outline-secondary">
+			<a href="{% provider_login_url 'github' %}">Github</a>
+		</button>
+			&emsp;/&emsp;
+		<button type="button" class="btn btn-outline-danger">
+			<a href="{% provider_login_url 'google' %}">Instagram</a>
+		</button>
+		-->
 {% endblock %}

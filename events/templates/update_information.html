@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-	{% if user.get_username == update_information.name %}
+	{% if user.id == update_information.owner %}
 	
 	<h1>Update information</h1>
 	<br/>

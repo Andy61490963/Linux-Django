@@ -5,7 +5,8 @@
 	<span style="font-family:monospace; font-size:30px;">Information</span>
 	
 <!-- Information -->
-{% for info in info %}
+<!-- for info in info1,that info1 is called by info1 = p.get_page(page) -->
+{% for info in info1 %}
 
 <div class="card px-lg-3 py-3 py-lg-4">
   <div class="card-header ">
@@ -15,7 +16,6 @@
     <div class="card-title"><li><font face="微軟正黑體">Introduction: {{ info.introduction }}</font></li></div>
 	<div class="card-title"><li><font face="微軟正黑體">Recent_events: {{ info.recent_events }}</font></li></div>
 	<div class="card-title"><li><font face="微軟正黑體">Autobiography: {{ info.autobiography }}</font></li></div>
-	<div class="card-title"><li><font face="微軟正黑體">Interest: {{ info.interest }}</font></li></div>
 	<div class="card-title"><li><font face="微軟正黑體">Refresh_date: {{ info.refresh_date }}</font></li></div>
 	<br/>
 	{% if info.image %}
@@ -29,6 +29,36 @@
 
 
 {% endfor %}
+<br/><br/>
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+  
+	{% if info1.has_previous %}
+		<li class="page-item"><a class="page-link" href="?page1">&laquo First</a></li>
+		<li class="page-item"><a class="page-link" href="?page={{ info1.previous_page_number }}">						 
+		previous</a></li>	
+	{% endif %}
+
+	{% for i in nums %}
+	   <li class="page-item">
+		<a class="page-link" href="?page={{ forloop.counter }}">
+		{{ forloop.counter }}</a></li>
+	{% endfor %}
+	
+	{% if info1.has_next %}
+		<li class="page-item">
+		<a class="page-link" href="?page={{ info1.next_page_number }}">
+		next</a></li>
+		<li class="page-item">
+		<a class="page-link" href="?page={{ info1.paginator.num_pages }}">
+		Last &raquo </a></li>	
+	{% endif %}
+	
+  </ul>
+</nav>
+
 {% endblock %}
 
 <!--

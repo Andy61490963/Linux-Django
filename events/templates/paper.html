@@ -4,7 +4,8 @@
 	<span style="font-family:monospace; font-size:30px;">Paper</span>
 <br/>
 <!-- Paper -->
-{% for paper in papers %}
+<!-- for info in papers1,that papers1 is called by views's papers1 = p.get_page(page) -->
+{% for paper in papers1 %}
 <div class="card">
   <div class="card-header">
     {{ paper }}
@@ -35,4 +36,33 @@
 -->
 
 {% endfor %}
+<br/><br/>
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+  
+	{% if papers1.has_previous %}
+		<li class="page-item"><a class="page-link" href="?page1">&laquo First</a></li>
+		<li class="page-item"><a class="page-link" href="?page={{ papers1.previous_page_number }}">						 
+		previous</a></li>	
+	{% endif %}
+
+	{% for i in nums %}
+	   <li class="page-item">
+		<a class="page-link" href="?page={{ forloop.counter }}">
+		{{ forloop.counter }}</a></li>
+	{% endfor %}
+	
+	{% if papers1.has_next %}
+		<li class="page-item">
+		<a class="page-link" href="?page={{ papers1.next_page_number }}">
+		next</a></li>
+		<li class="page-item">
+		<a class="page-link" href="?page={{ papers1.paginator.num_pages }}">
+		Last &raquo </a></li>	
+	{% endif %}
+	
+  </ul>
+</nav>
 {% endblock %}

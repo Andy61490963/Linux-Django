@@ -28,6 +28,7 @@ class information(models.Model):
     refresh_date = models.DateTimeField(default=datetime.now, blank=True)
     autobiography = models.TextField('Autobiography',max_length=500)
     image = models.ImageField(null=True, blank=True, upload_to="images/")
+    owner = models.IntegerField("Information Owner", blank=False, default=1)
     
     def __str__(self):  #superuser要用的
         return self.name
@@ -49,6 +50,14 @@ class all_aboutus(models.Model):
         return self.experience
         
 class Portfolio(models.Model):
+    title = models.CharField('title',max_length=100)
+    content = models.TextField('content',max_length=10000)
+    image = models.ImageField(null=True, blank=True, upload_to="images/")
+    
+    def __str__(self):  #superuser要用的
+        return self.title
+        
+class article(models.Model):
     title = models.CharField('title',max_length=100)
     content = models.TextField('content',max_length=10000)
     image = models.ImageField(null=True, blank=True, upload_to="images/")
